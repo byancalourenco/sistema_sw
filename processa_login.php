@@ -21,15 +21,12 @@
     $num_registro = $stmt->rowCount();
 
     // obtém o resultado
-    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // exibe o resultado 
     var_dump($resultado);
 
-    if($num_registro == 0){
-        echo "Vc not está cadastrado, sorry";
-        header('Location: index.php');
-    }else{
+    if($num_registro == 1){
         $_SESSION['id'] = $resultado['id'];
         $_SESSION['nome'] = $resultado['nome'];
         $_SESSION['email'] = $resultado['email'];
@@ -37,5 +34,12 @@
 
         echo "Acesso permitido para a restrita.php";
     }
+    else{ echo "Vc not está cadastrado, sorry";
+        header('Location: index.php');}
+    
+        
     
 ?>
+
+
+
